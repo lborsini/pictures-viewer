@@ -1,6 +1,8 @@
 from tkinter import *
 from PIL import Image, ImageTk
 from tkinter import filedialog
+import sys  
+import os
 
 root = Tk() 
 root.title('Photo Viewer')
@@ -11,6 +13,16 @@ root.resizable(0,0)
 frame = Frame(root, width=700, height=650)
 frame.grid(row=0, column=0, columnspan=4, padx=30, pady=30)
 frame.config(background='#212121')
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 # fisrt 4 img its a demostration
 i1 = Image.open('Img/pexels-alexander-grey-1148998.jpg').resize((700, 600), Image.ANTIALIAS)
